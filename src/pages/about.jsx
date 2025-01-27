@@ -3,7 +3,6 @@ import Navbar from "../components/home/Navbar";
 import Link from "next/link";
 import Footer from "../components/home/Footer";
 import IframeSect from "../components/home/IframeSect";
-import Testimonies from "../components/home/testimonies";
 import Head from "next/head";
 import Image from "next/image";
 
@@ -122,7 +121,6 @@ const About = () => {
         </div>
       </section>
       <IframeSect />
-      <Testimonies />
       <Footer />
     </div>
   );
