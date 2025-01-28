@@ -57,8 +57,8 @@ const Profile = () => {
     referralCount: 0,
     admin: false,
     idnum: 101010,
-    userName: "John Doe",
-    authStatus: "unseen",
+    userName: "",
+    authStatus: "",
   });
 
   const [investData, setInvestData] = useState({
@@ -274,9 +274,9 @@ const Profile = () => {
   <div className="centerRightProfile">
     <ul>
       <li
-        className={profilestate === "Dashboard" ? "active" : ""}
+        className={profilestate === "Műszerfal" ? "active" : ""}
         onClick={() => {
-          setProfileState("Dashboard");
+          setProfileState("Műszerfal");
         }}
       >
         <i className="icofont-dashboard-web"></i> Irányítópult

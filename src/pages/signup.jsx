@@ -39,14 +39,14 @@ const Signup = () => {
         referralCount: 0,
         admin: false,
         idnum: 101010,
-        userName: "John Doe",
+        userName: "",
         bonus: 50,
         authStatus: "unseen",
         dateUpdated: new Date().toISOString()
     });
 
     const notificationPush = {
-        message: "You just received $50 sign up bonus",
+        message: "You just received €50 sign up bonus",
         dateTime: new Date().toISOString(),
         idnum: toLocaleStorage.idnum,
         status: "unseen"
@@ -105,33 +105,37 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const alreadyExist = users.find((elem) => elem.email === toLocaleStorage.email && elem.password === toLocaleStorage.password);
-        
+        const alreadyExist = users.find(
+            (elem) =>
+                elem.email === toLocaleStorage.email &&
+                elem.password === toLocaleStorage.password
+        );
+    
         if (alreadyExist) {
             setErrMsg("An account already exists with this email and password. Try logging in.");
             setTimeout(() => setErrMsg(""), 3500);
         } else {
             try {
                 // Add notification
-                await addDoc(colRefNotif, {...notificationPush});
+                await addDoc(colRefNotif, { ...notificationPush });
                 // Add user
-                await addDoc(colRef, {...toLocaleStorage});
+                await addDoc(colRef, { ...toLocaleStorage });
                 // Fetch and set active user
                 getSingleDoc();
                 // Send email
                 // Reset form
                 e.target.reset();
                 setVerify("Default");
-                // Redirect
-                router.push(registerFromPath);
+                // Redirect to profile page
+                router.push("/profile");
             } catch (error) {
-                console.error('Error during signup:', error);
+                console.error("Error during signup:", error);
                 setErrMsg("An error occurred while creating your account. Please try again.");
                 setTimeout(() => setErrMsg(""), 3500);
             }
         }
     };
-
+    
     const handleVerify = () => {
         if (verify === "Default") {
             setVerify("verifying");

@@ -80,11 +80,11 @@ export default function Home() {
       <main>
       <section className="homeIntro">
   <h1>Ahol a pénzed dolgozik</h1>
-  <p>Kereskedj velünk, és érj el magas hozamot a befektetéseden</p>
+  <p>Kereskedjen velünk, és magas hozamot érjen el Betétjein</p>
 
   <div className="cta">
     <a href="#Offers" className="fancyBtn">
-      Fektess be most
+    Kezdj el nyerni
     </a>
   </div>
 </section>
@@ -101,7 +101,7 @@ export default function Home() {
     </div>
     <div className="unitfact">
       <h2>€180M+</h2>
-      <p>Összes befektetés</p>
+      <p>Összes betétek</p>
     </div>
     <div className="unitfact">
       <h2>€700M</h2>

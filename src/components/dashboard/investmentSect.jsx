@@ -120,7 +120,7 @@ const InvestmentSect = ({
       <h2>Elérhető Ajánlataink</h2>
       <div className="OffersCntn">
         <div className="unitOffer">
-          <h3>SILVER</h3>
+          <h3>EZÜST</h3>
           <h4>
             <span>€100</span> <br /> - <br /> <span>€900</span>
           </h4>
@@ -148,7 +148,7 @@ const InvestmentSect = ({
         </div>
         <div className="unitOffer fancybg">
           <h3>
-            DIAMOND <i className="icofont-diamond"></i>
+          GYÉMÁNT <i className="icofont-diamond"></i>
           </h3>
           <h4>
             <span>€10,000</span> <br /> - <br /> <span>€100,000</span>
@@ -180,7 +180,7 @@ const InvestmentSect = ({
           </button>
         </div>
         <div className="unitOffer">
-          <h3>GOLD</h3>
+          <h3>ARANY</h3>
           <h4>
             <span>€1,000</span> <br /> - <br /> <span>€9,000</span>
           </h4>

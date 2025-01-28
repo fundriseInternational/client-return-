@@ -57,7 +57,7 @@ const Dashboard_admin = () => {
     referralCount: 0,
     admin: false,
     idnum: 101010,
-    userName: "John Doe",
+    userName: "",
   });
 
   const [userData, setUserData] = useState({
@@ -72,7 +72,7 @@ const Dashboard_admin = () => {
     referralCount: 0,
     admin: false,
     idnum: 101010,
-    userName: "John Doe",
+    userName: "",
   });
 
   const [investData, setInvestData] = useState({

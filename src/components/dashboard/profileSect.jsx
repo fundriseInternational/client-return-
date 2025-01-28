@@ -58,7 +58,7 @@ const ProfileSect = ({ currentUser, setCurrentUser, widgetState, setWidgetState}
       <>
         <div className="profileMainCntn">
           <div className="topmostProfileMainDisplay">
-            <h2>Üdv újra itt, {currentUser?.userName}.</h2>
+            <h2>üdvözlöm újra.</h2>
             <div className="profileUtilCntn">
               <div
                 className="profilepix"
