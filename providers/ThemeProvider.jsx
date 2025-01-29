@@ -5,7 +5,7 @@ export const themeContext = createContext(null);
 const ThemeProvider = ({ children }) => {
     const [showAbsMain, setShowAbsMain] = useState(true);
 
-    const [registerFromPath, setregisterFromPath] = useState("/");
+    const [registerFromPath, setregisterFromPath] = useState("/profile");
 
     const [currentUser, setCurrentUser] = useState({});
 

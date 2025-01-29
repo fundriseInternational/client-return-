@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useContext } from 'react';
+import emailjs from '@emailjs/browser'; // Import EmailJS
 import { motion } from "framer-motion";
 import Link from 'next/link';
 import { initializeApp } from "firebase/app";
@@ -29,7 +30,7 @@ const Signup = () => {
 
     const [toLocaleStorage, setToLocalStorage] = useState({
         name: "",
-        avatar: "avatar_1",
+        avatar: "",
         email: "",
         password: "",
         balance: 0,
@@ -105,37 +106,31 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const alreadyExist = users.find(
-            (elem) =>
-                elem.email === toLocaleStorage.email &&
-                elem.password === toLocaleStorage.password
-        );
-    
+        const alreadyExist = users.find((elem) => elem.email === toLocaleStorage.email && elem.password === toLocaleStorage.password);
+        
         if (alreadyExist) {
             setErrMsg("An account already exists with this email and password. Try logging in.");
             setTimeout(() => setErrMsg(""), 3500);
         } else {
             try {
                 // Add notification
-                await addDoc(colRefNotif, { ...notificationPush });
+                await addDoc(colRefNotif, {...notificationPush});
                 // Add user
-                await addDoc(colRef, { ...toLocaleStorage });
+                await addDoc(colRef, {...toLocaleStorage});
                 // Fetch and set active user
                 getSingleDoc();
-                // Send email
-                // Reset form
                 e.target.reset();
                 setVerify("Default");
-                // Redirect to profile page
-                router.push("/profile");
+                // Redirect
+                router.push(registerFromPath);
             } catch (error) {
-                console.error("Error during signup:", error);
+                console.error('Error during signup:', error);
                 setErrMsg("An error occurred while creating your account. Please try again.");
                 setTimeout(() => setErrMsg(""), 3500);
             }
         }
     };
-    
+
     const handleVerify = () => {
         if (verify === "Default") {
             setVerify("verifying");
@@ -157,7 +152,7 @@ const Signup = () => {
             <div className="leftSide">
                 <video src="signup_vid2.mp4" autoPlay loop muted></video>
                 <div className="overlay">
-                    <h2>&quot;Amikor esik az arany eső, <br /> tedd ki a vödröt, <br />nem a gyűszűt.&quot;</h2>
+                    <h2>&quot;Ha esik az arany eső, <br />tedd ki a vödröt, <br /> nem a gyűszűt.&quot;</h2>
                     <p><span>--</span>  Warren Buffett  <span>--</span></p>
                 </div>
             </div>
@@ -181,7 +176,7 @@ const Signup = () => {
                                 onChange={(e) => setToLocalStorage(prevState => ({ ...prevState, name: e.target.value }))} 
                                 type="text" 
                                 name='name' 
-                                placeholder='Fullname' 
+                                placeholder='Teljes név' 
                                 required
                             />
                             <span><i className="icofont-ui-user"></i></span>
@@ -191,7 +186,7 @@ const Signup = () => {
                                 onChange={(e) => setToLocalStorage(prevState => ({ ...prevState, password: e.target.value }))} 
                                 type={`${passwordShow ? "text" : "password"}`} 
                                 name='password' 
-                                placeholder='Password' 
+                                placeholder='Jelszó' 
                                 required
                             />
                             <button type="button" onClick={() => setPasswordShow(prev => !prev)}>
@@ -220,7 +215,7 @@ const Signup = () => {
                         {errMsg && <p className='errorMsg'>{errMsg}</p>}
                         <label className="form-control2">
                             <input type="checkbox" name="checkbox" required/>Egyetértek minden feltétellel és
-                            fundrise global company feltételei hu.
+                            nemzetközi adománygyűjtés feltételei.
                         </label>
 
                         <button type="submit" className='fancyBtn'>Hozzon létre egy fiókot</button>
